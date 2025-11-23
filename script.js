@@ -43,20 +43,55 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Navbar background change on scroll
+// Consolidated scroll event handler for better performance
 const navbar = document.querySelector('.navbar');
+const hero = document.querySelector('.hero');
 let lastScroll = 0;
+let ticking = false;
 
-window.addEventListener('scroll', () => {
+function handleScroll() {
     const currentScroll = window.pageYOffset;
     
+    // Navbar shadow effect
     if (currentScroll > 100) {
         navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
     } else {
         navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
     }
     
+    // Parallax effect for hero section
+    if (hero) {
+        const parallax = currentScroll * 0.5;
+        hero.style.transform = `translateY(${parallax}px)`;
+    }
+    
+    // Active navigation state
+    let current = '';
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (currentScroll >= sectionTop - 100) {
+            current = section.getAttribute('id');
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+        }
+    });
+    
     lastScroll = currentScroll;
+    ticking = false;
+}
+
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            handleScroll();
+        });
+        ticking = true;
+    }
 });
 
 // Intersection Observer for fade-in animations
@@ -127,46 +162,33 @@ if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
         
-        // Get form values
-        const formData = new FormData(contactForm);
+        const button = contactForm.querySelector('button[type="submit"]');
+        const originalText = button.textContent;
         
-        // Show success message (in a real app, you'd send this to a server)
-        alert('Thank you for your message! I will get back to you soon.');
+        // Show loading state
+        button.textContent = 'Sending...';
+        button.disabled = true;
         
-        // Reset form
-        contactForm.reset();
+        // Simulate form submission (in a real app, you'd send this to a server)
+        setTimeout(() => {
+            button.textContent = '✓ Message Sent!';
+            button.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Reset button after 3 seconds
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.disabled = false;
+                button.style.background = '';
+            }, 3000);
+        }, 1000);
     });
 }
 
 // Add active state to current section in navigation
-window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (pageYOffset >= sectionTop - 100) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
-    });
-});
-
-// Parallax effect for hero section
-window.addEventListener('scroll', () => {
-    const hero = document.querySelector('.hero');
-    const scrolled = window.pageYOffset;
-    const parallax = scrolled * 0.5;
-    
-    if (hero) {
-        hero.style.transform = `translateY(${parallax}px)`;
-    }
-});
+// (This is now handled in the consolidated scroll handler above)
 
 // Simple fade-in effect for hero title (avoids HTML rendering issues)
 const heroTitle = document.querySelector('.hero-title');
