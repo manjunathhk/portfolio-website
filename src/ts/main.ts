@@ -10,6 +10,11 @@ interface ScrollState {
   ticking: boolean;
 }
 
+// Constants
+const HAMBURGER_TRANSLATE_Y = 8; // pixels for hamburger animation
+const SKILL_BAR_ANIMATION_DELAY = 100; // milliseconds
+const FORM_RESET_DELAY = 3000; // milliseconds
+
 // Mobile Navigation Toggle
 const initMobileNav = (): void => {
   const hamburger = document.querySelector<HTMLElement>('.hamburger');
@@ -24,9 +29,9 @@ const initMobileNav = (): void => {
     // Animate hamburger
     const spans = hamburger.querySelectorAll<HTMLElement>('span');
     if (navMenu.classList.contains('active')) {
-      spans[0].style.transform = 'rotate(45deg) translateY(8px)';
+      spans[0].style.transform = `rotate(45deg) translateY(${HAMBURGER_TRANSLATE_Y}px)`;
       spans[1].style.opacity = '0';
-      spans[2].style.transform = 'rotate(-45deg) translateY(-8px)';
+      spans[2].style.transform = `rotate(-45deg) translateY(-${HAMBURGER_TRANSLATE_Y}px)`;
     } else {
       spans[0].style.transform = 'none';
       spans[1].style.opacity = '1';
@@ -186,7 +191,7 @@ const animateSkillBars = (): void => {
       if (width) {
         bar.style.width = width + '%';
       }
-    }, 100);
+    }, SKILL_BAR_ANIMATION_DELAY);
   });
 
   skillBarsAnimated = true;
@@ -217,12 +222,12 @@ const initContactForm = (): void => {
       // Reset form
       contactForm.reset();
 
-      // Reset button after 3 seconds
+      // Reset button after delay
       setTimeout(() => {
         button.textContent = originalText;
         button.disabled = false;
         button.style.background = '';
-      }, 3000);
+      }, FORM_RESET_DELAY);
     }, 1000);
   });
 };
