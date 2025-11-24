@@ -1,0 +1,12 @@
+// Main SCSS file - imports all partials
+@use 'variables';
+@use 'mixins';
+@use 'base';
+@use 'animations';
+@use 'navigation';
+@use 'hero';
+@use 'about';
+@use 'skills';
+@use 'projects';
+@use 'contact';
+@use 'footer';

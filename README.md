@@ -26,58 +26,132 @@ A modern, responsive portfolio website to showcase skills, projects, and profess
 
 ## Technology Stack
 
+- **Node.js** - Build tooling and development server
+- **TypeScript** - Type-safe JavaScript with better IDE support
+- **SCSS** - Modular, maintainable stylesheets with variables and nesting
 - **HTML5** - Semantic markup
-- **CSS3** - Modern styling with gradients, flexbox, and grid
-- **JavaScript** - Vanilla JS for interactivity and animations
-- **No dependencies** - Zero external libraries required
 
-## How to Use
+## Prerequisites
 
-### Option 1: Direct Open
-Simply open `index.html` in any modern web browser.
+- **Node.js** (v16 or higher)
+- **npm** (comes with Node.js)
 
-### Option 2: Local Server
-For better experience (especially for testing):
+## Installation
 
+1. Clone the repository:
 ```bash
-# Using Python
-python -m http.server 8000
-
-# Using Node.js
-npx http-server
-
-# Using PHP
-php -S localhost:8000
+git clone https://github.com/manjunathhk/portfolio-website.git
+cd portfolio-website
 ```
 
-Then visit `http://localhost:8000` in your browser.
+2. Install dependencies:
+```bash
+npm install
+```
+
+## Development
+
+### Build the project
+Compile TypeScript and SCSS files:
+```bash
+npm run build
+```
+
+### Development mode with auto-reload
+Watch for changes and rebuild automatically:
+```bash
+npm run watch
+```
+
+### Run development server
+Start a local server and watch for changes:
+```bash
+npm run dev
+```
+
+This will:
+- Watch TypeScript and SCSS files for changes
+- Auto-compile on file changes
+- Start a local server at `http://localhost:8080`
+- Open the website in your default browser
+
+### Individual build commands
+```bash
+# Build SCSS only
+npm run build:scss
+
+# Build TypeScript only
+npm run build:ts
+
+# Watch SCSS for changes
+npm run watch:scss
+
+# Watch TypeScript for changes
+npm run watch:ts
+
+# Serve the website (without watching)
+npm run serve
+```
+
+## Project Structure
+
+```
+portfolio-website/
+├── src/
+│   ├── scss/               # SCSS source files
+│   │   ├── _variables.scss # Color and spacing variables
+│   │   ├── _mixins.scss    # Reusable SCSS mixins
+│   │   ├── _base.scss      # Base styles and resets
+│   │   ├── _navigation.scss
+│   │   ├── _hero.scss
+│   │   ├── _about.scss
+│   │   ├── _skills.scss
+│   │   ├── _projects.scss
+│   │   ├── _contact.scss
+│   │   ├── _footer.scss
+│   │   ├── _animations.scss
+│   │   └── main.scss       # Main SCSS entry point
+│   └── ts/                 # TypeScript source files
+│       └── main.ts         # Main TypeScript entry point
+├── dist/                   # Compiled files (auto-generated)
+│   ├── css/
+│   │   └── styles.css      # Compiled CSS
+│   └── js/
+│       └── main.js         # Compiled JavaScript
+├── index.html              # Main HTML file
+├── package.json            # Node.js dependencies and scripts
+└── tsconfig.json          # TypeScript configuration
+```
 
 ## Customization
 
 ### Personal Information
 Edit `index.html` to update:
-- Name in the hero section (line 34)
-- About section content (lines 52-63)
-- Contact email and social links (lines 293-303)
+- Name in the hero section
+- About section content
+- Contact email and social links
 
 ### Skills
-Update skills in the Skills section (lines 73-171) to match your expertise.
+Update skills in the Skills section to match your expertise.
 
 ### Projects
-Replace the featured projects (lines 182-281) with your own projects, including:
+Replace the featured projects with your own projects, including:
 - Project descriptions
 - Technology tags
 - Demo and source code links
 
-### Colors
-Modify the CSS variables in `styles.css` (lines 8-19) to change the color scheme:
-```css
-:root {
-    --primary-color: #667eea;
-    --secondary-color: #764ba2;
-    --accent-color: #f093fb;
-    /* ... other colors */
-}
+### Colors and Styling
+Modify the SCSS variables in `src/scss/_variables.scss` to change the color scheme:
+```scss
+$primary-color: #667eea;
+$secondary-color: #764ba2;
+$accent-color: #f093fb;
+// ... other colors
+```
+
+After making changes to SCSS or TypeScript files, rebuild the project:
+```bash
+npm run build
 ```
 
 ## Browser Support
@@ -94,6 +168,8 @@ Modify the CSS variables in `styles.css` (lines 8-19) to change the color scheme
 - Lazy loading animations with Intersection Observer
 - Efficient DOM manipulation
 - CSS transforms for smooth animations
+- Modular SCSS for maintainable stylesheets
+- TypeScript for type safety and better code quality
 
 ## License
 

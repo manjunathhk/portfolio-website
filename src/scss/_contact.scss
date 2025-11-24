@@ -1,0 +1,84 @@
+// Contact Section styles
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  @include respond-to('tablet') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact-info {
+  h3 {
+    font-size: 1.8rem;
+    margin-bottom: $spacing-unit;
+    color: $text-color;
+  }
+
+  p {
+    color: $text-light;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+  }
+}
+
+.contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-unit;
+}
+
+.contact-method {
+  display: flex;
+  align-items: center;
+  gap: $spacing-unit;
+
+  a {
+    color: $primary-color;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color $transition-base;
+
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+}
+
+.contact-icon {
+  font-size: 1.5rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-unit;
+
+  .btn {
+    width: fit-content;
+  }
+}
+
+.form-group {
+  input,
+  textarea {
+    width: 100%;
+    padding: $spacing-unit;
+    border: 2px solid $border-color;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color $transition-base;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+    }
+  }
+}

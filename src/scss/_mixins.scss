@@ -1,0 +1,65 @@
+// Mixins
+@use 'variables' as *;
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin gradient-bg {
+  background: linear-gradient(135deg, $primary-color, $secondary-color);
+}
+
+@mixin gradient-text {
+  background: linear-gradient(135deg, $primary-color, $secondary-color);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@mixin card-hover {
+  transition: transform $transition-base, box-shadow $transition-base;
+  
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: $shadow-hover;
+  }
+}
+
+@mixin section-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  color: $text-color;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(135deg, $primary-color, $secondary-color);
+    border-radius: 2px;
+  }
+}
+
+// Responsive breakpoints
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'mobile' {
+    @media (max-width: $breakpoint-mobile) {
+      @content;
+    }
+  } @else if $breakpoint == 'tablet' {
+    @media (max-width: $breakpoint-tablet) {
+      @content;
+    }
+  } @else if $breakpoint == 'desktop' {
+    @media (min-width: $breakpoint-desktop) {
+      @content;
+    }
+  }
+}

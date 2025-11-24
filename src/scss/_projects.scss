@@ -1,0 +1,84 @@
+// Projects Section styles
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.projects {
+  background: $bg-light;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+
+  @include respond-to('tablet') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.project-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: $shadow;
+  @include card-hover;
+}
+
+.project-image {
+  height: 200px;
+  @include gradient-bg;
+  @include flex-center;
+}
+
+.project-placeholder {
+  font-size: 5rem;
+  opacity: 0.8;
+}
+
+.project-content {
+  padding: 1.5rem;
+
+  h3 {
+    font-size: 1.4rem;
+    margin-bottom: $spacing-unit;
+    color: $text-color;
+  }
+
+  p {
+    color: $text-light;
+    margin-bottom: $spacing-unit;
+    line-height: 1.6;
+  }
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: $spacing-unit;
+
+  span {
+    background: $bg-light;
+    color: $primary-color;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+}
+
+.project-links {
+  display: flex;
+  gap: $spacing-unit;
+}
+
+.project-link {
+  color: $primary-color;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color $transition-base;
+
+  &:hover {
+    color: $secondary-color;
+  }
+}

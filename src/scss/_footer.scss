@@ -1,0 +1,38 @@
+// Footer styles
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.footer {
+  background: $bg-dark;
+  color: white;
+  padding: 2rem 0;
+  text-align: center;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: $spacing-unit;
+
+    @include respond-to('tablet') {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+}
+
+.social-links {
+  display: flex;
+  gap: 1.5rem;
+
+  a {
+    color: white;
+    text-decoration: none;
+    transition: color $transition-base;
+
+    &:hover {
+      color: $accent-color;
+    }
+  }
+}
