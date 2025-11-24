@@ -1,0 +1,95 @@
+// Navigation styles
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: $shadow;
+  z-index: 1000;
+  transition: all $transition-base;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $spacing-unit 20px;
+  }
+}
+
+.nav-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  @include gradient-text;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+
+  @include respond-to('tablet') {
+    position: fixed;
+    left: -100%;
+    top: 70px;
+    flex-direction: column;
+    background-color: white;
+    width: 100%;
+    text-align: center;
+    transition: $transition-base;
+    box-shadow: $shadow;
+    padding: 2rem 0;
+
+    &.active {
+      left: 0;
+    }
+  }
+}
+
+.nav-link {
+  text-decoration: none;
+  color: $text-color;
+  font-weight: 500;
+  transition: color $transition-base;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(135deg, $primary-color, $secondary-color);
+    transition: width $transition-base;
+  }
+
+  &:hover {
+    color: $primary-color;
+
+    &::after {
+      width: 100%;
+    }
+  }
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 4px;
+
+  span {
+    width: 25px;
+    height: 3px;
+    background: $text-color;
+    transition: all $transition-base;
+  }
+
+  @include respond-to('tablet') {
+    display: flex;
+  }
+}

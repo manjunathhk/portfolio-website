@@ -1,0 +1,88 @@
+// Skills Section styles
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+
+  @include respond-to('tablet') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.skill-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: $shadow;
+  text-align: center;
+  @include card-hover;
+
+  h3 {
+    margin-bottom: $spacing-unit;
+    color: $text-color;
+    font-size: 1.3rem;
+  }
+}
+
+.skill-icon {
+  font-size: 3rem;
+  margin-bottom: $spacing-unit;
+}
+
+.skill-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.skill-tag {
+  @include gradient-bg;
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+// Skill Bars
+.skill-bars {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.skill-bar-item {
+  margin-bottom: 2rem;
+}
+
+.skill-bar-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: $text-color;
+}
+
+.skill-bar-bg {
+  width: 100%;
+  height: 12px;
+  background: $border-color;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.skill-bar-fill {
+  height: 100%;
+  @include gradient-bg;
+  border-radius: 10px;
+  width: 0;
+  transition: width 1.5s ease;
+
+  &.animate {
+    width: var(--width);
+  }
+}

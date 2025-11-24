@@ -1,0 +1,27 @@
+{
+  "name": "portfolio-website",
+  "version": "1.0.0",
+  "description": "A modern, responsive portfolio website to showcase skills, projects, and professional experience.",
+  "main": "dist/js/main.js",
+  "scripts": {
+    "build:scss": "sass src/scss/main.scss dist/css/styles.css --no-source-map",
+    "build:ts": "tsc",
+    "build": "npm run build:scss && npm run build:ts",
+    "watch:scss": "sass src/scss/main.scss dist/css/styles.css --watch --no-source-map",
+    "watch:ts": "tsc --watch",
+    "watch": "concurrently \"npm run watch:scss\" \"npm run watch:ts\"",
+    "serve": "http-server . -p 8080 -o",
+    "dev": "concurrently \"npm run watch\" \"npm run serve\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "concurrently": "^9.2.1",
+    "http-server": "^14.1.1",
+    "sass": "^1.94.2",
+    "typescript": "^5.9.3"
+  }
+}

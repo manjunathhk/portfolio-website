@@ -1,0 +1,69 @@
+// Reset and Base Styles
+@use 'variables' as *;
+@use 'mixins' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: $text-color;
+  background-color: $bg-color;
+}
+
+.container {
+  max-width: $breakpoint-desktop;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+// Button styles
+.btn {
+  padding: 12px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all $transition-base;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+
+  &-primary {
+    background: white;
+    color: $primary-color;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  &-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+
+    &:hover {
+      background: white;
+      color: $primary-color;
+    }
+  }
+}
+
+// Section styles
+section {
+  padding: 80px 0;
+}
+
+.section-title {
+  @include section-title;
+}
